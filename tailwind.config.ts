@@ -13,7 +13,31 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'mobile-hero': ['Mobile Youth Hero', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
+        'mobile-base': ['Mobile Youth Base', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
+        'gibson': ['Gibson', '-apple-system', 'Roboto', 'Helvetica', 'sans-serif'],
+      },
+      spacing: {
+        '18': '4.5rem',
+      },
       colors: {
+        // Mobile.de specific colors
+        'mobile-purple': '#350051',
+        'mobile-orange': '#FA3C00',
+        'mobile-red': '#DB3000',
+        'mobile-secondary-purple': '#68298A',
+        'mobile-text-primary': '#1B1B21',
+        'mobile-text-secondary': '#5D616B',
+        'mobile-text-muted': '#7E838F',
+        'mobile-text-light': '#E6EAF0',
+        'mobile-bg-highlight': '#F5F7FA',
+        'mobile-bg-dark': '#101014',
+        'mobile-bg-field': '#2A2B33',
+        'mobile-border': '#D5DAE0',
+        'mobile-success': '#35855A',
+
+        // Keep existing theme colors for compatibility
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
