@@ -67,7 +67,7 @@ export default function FinancingCalculator() {
       </header>
 
       {/* Main Content */}
-      <main className="px-4 py-6 space-y-6">
+      <main className="px-4 py-6 space-y-6 max-w-md mx-auto lg:max-w-2xl">
         {/* Title Section */}
         <div className="space-y-2">
           <h1 className="text-xl font-mobile-hero font-medium text-mobile-text-primary">
