@@ -305,7 +305,7 @@ export default function FinancingCalculator() {
                     Monatsrate
                   </span>
                   <span className="text-sm font-bold text-mobile-text-primary font-mobile-base">
-                    {finalPayment ? "220 €" : "985 €"}
+                    {financingData.monthlyRate}
                   </span>
                 </div>
               </div>
