@@ -131,9 +131,11 @@ export default function FinancingCalculator() {
                 Nein
               </button>
             </div>
-            <div className="text-right">
-              <span className="text-sm text-mobile-text-primary font-mobile-base">6.296 €</span>
-            </div>
+            {finalPayment && (
+              <div className="text-right">
+                <span className="text-sm text-mobile-text-primary font-mobile-base">6.296 €</span>
+              </div>
+            )}
           </div>
 
           {/* Term Selection */}
