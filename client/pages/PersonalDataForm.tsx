@@ -306,17 +306,22 @@ export default function PersonalDataForm() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-4 pt-6">
-          <Link
-            to="/"
-            className="px-4 py-3 rounded-lg border-2 border-mobile-secondary-purple bg-white text-sm font-medium text-mobile-text-primary font-mobile-base min-h-[44px] flex items-center justify-center"
-          >
-            Abbrechen
-          </Link>
-          <button className="flex-1 px-4 py-3 rounded-lg bg-mobile-red border border-mobile-red text-sm font-bold text-white font-mobile-base text-center min-h-[44px] flex items-center justify-center">
-            Hinzufügen
-          </button>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="flex gap-4 pt-6">
+            <Link
+              to="/"
+              className="px-4 py-3 rounded-lg border-2 border-mobile-secondary-purple bg-white text-sm font-medium text-mobile-text-primary font-mobile-base min-h-[44px] flex items-center justify-center"
+            >
+              Abbrechen
+            </Link>
+            <button
+              type="submit"
+              className="flex-1 px-4 py-3 rounded-lg bg-mobile-red border border-mobile-red text-sm font-bold text-white font-mobile-base text-center min-h-[44px] flex items-center justify-center hover:bg-red-700 transition-colors"
+            >
+              Hinzufügen
+            </button>
+          </div>
+        </form>
       </main>
 
       {/* Footer */}
