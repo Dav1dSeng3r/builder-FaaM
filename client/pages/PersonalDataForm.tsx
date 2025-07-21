@@ -371,6 +371,12 @@ export default function PersonalDataForm() {
           </div>
         </div>
       </footer>
+
+      {/* Privacy Info Modal */}
+      <PrivacyInfoModal
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
+      />
     </div>
   );
 }
