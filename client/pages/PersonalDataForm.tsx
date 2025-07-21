@@ -293,7 +293,10 @@ export default function PersonalDataForm() {
 
             {/* Info Section */}
             <div className="pt-2 space-y-3">
-              <button className="flex items-center gap-1.5 text-left">
+              <button
+                onClick={() => setIsPrivacyModalOpen(true)}
+                className="flex items-center gap-1.5 text-left"
+              >
                 <Info className="w-4 h-4 text-mobile-text-secondary flex-shrink-0" />
                 <span className="text-sm text-mobile-text-secondary font-mobile-base underline">
                   Warum fragen wir nach Deinen persönlichen Daten?
