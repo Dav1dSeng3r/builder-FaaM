@@ -96,7 +96,7 @@ export default function FinancingCalculator() {
             </label>
             <div className="flex items-end gap-2">
               <span className="text-3xl font-mobile-hero font-medium text-mobile-text-primary">
-                220 €
+                {finalPayment ? "220 €" : "985 €"}
               </span>
               <span className="text-sm text-mobile-text-secondary font-mobile-base pb-1.5">
                 5,99% eff. Jahreszins
