@@ -36,7 +36,7 @@ export default function PersonalDataForm() {
       </header>
 
       {/* Main Content */}
-      <main className="px-4 py-6 min-h-[calc(100vh-200px)] flex flex-col justify-between">
+      <main className="px-4 py-6 min-h-[calc(100vh-200px)] flex flex-col justify-between max-w-md mx-auto lg:max-w-2xl">
         <div className="space-y-4">
           {/* Title Section */}
           <div className="space-y-2">
