@@ -209,7 +209,7 @@ export default function FinancingCalculator() {
             </div>
             {finalPayment && (
               <div className="text-right">
-                <span className="text-sm text-mobile-text-primary font-mobile-base">6.296 €</span>
+                <span className="text-sm text-mobile-text-primary font-mobile-base">{financingData.finalPaymentAmount}</span>
               </div>
             )}
           </div>
