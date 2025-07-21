@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Info } from "lucide-react";
+import { ChevronDown, Info, AlertCircle } from "lucide-react";
 
 export default function PersonalDataForm() {
   const [formData, setFormData] = useState({
@@ -11,8 +11,110 @@ export default function PersonalDataForm() {
     city: "",
   });
 
+  const [errors, setErrors] = useState({
+    birthDate: "",
+    street: "",
+    houseNumber: "",
+    postalCode: "",
+    city: "",
+  });
+
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+
+    // Clear error when user starts typing
+    if (hasSubmitted && errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: "" }));
+    }
+  };
+
+  const validateBirthDate = (birthDate: string) => {
+    if (!birthDate.trim()) {
+      return "Geburtsdatum ist erforderlich";
+    }
+
+    const dateRegex = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/;
+    if (!dateRegex.test(birthDate)) {
+      return "Bitte geben Sie das Datum im Format TT.MM.JJJJ ein";
+    }
+
+    const [, day, month, year] = birthDate.match(dateRegex) || [];
+    const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    const now = new Date();
+
+    if (date > now) {
+      return "Geburtsdatum darf nicht in der Zukunft liegen";
+    }
+
+    const age = now.getFullYear() - date.getFullYear();
+    if (age < 18 || age > 100) {
+      return "Sie müssen zwischen 18 und 100 Jahre alt sein";
+    }
+
+    return "";
+  };
+
+  const validateStreet = (street: string) => {
+    if (!street.trim()) {
+      return "Straße ist erforderlich";
+    }
+    if (street.trim().length < 2) {
+      return "Straße muss mindestens 2 Zeichen lang sein";
+    }
+    return "";
+  };
+
+  const validateHouseNumber = (houseNumber: string) => {
+    if (!houseNumber.trim()) {
+      return "Hausnummer ist erforderlich";
+    }
+    return "";
+  };
+
+  const validatePostalCode = (postalCode: string) => {
+    if (!postalCode.trim()) {
+      return "Postleitzahl ist erforderlich";
+    }
+    if (!/^\d{5}$/.test(postalCode)) {
+      return "Postleitzahl muss aus 5 Ziffern bestehen";
+    }
+    return "";
+  };
+
+  const validateCity = (city: string) => {
+    if (!city.trim()) {
+      return "Ort ist erforderlich";
+    }
+    if (city.trim().length < 2) {
+      return "Ort muss mindestens 2 Zeichen lang sein";
+    }
+    return "";
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      birthDate: validateBirthDate(formData.birthDate),
+      street: validateStreet(formData.street),
+      houseNumber: validateHouseNumber(formData.houseNumber),
+      postalCode: validatePostalCode(formData.postalCode),
+      city: validateCity(formData.city),
+    };
+
+    setErrors(newErrors);
+    return Object.values(newErrors).every(error => error === "");
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setHasSubmitted(true);
+
+    if (validateForm()) {
+      // Form is valid, proceed with submission
+      console.log("Form submitted successfully:", formData);
+      // Add your submission logic here
+    }
   };
 
   return (
