@@ -16,97 +16,94 @@ export default function FinancingCalculator() {
     { value: "60", label: "60\nMonate" },
   ];
 
-  // Calculate financing details based on selected term and final payment
+  // Calculate financing details based on selected term, final payment, and down payment
   const getFinancingDetails = () => {
-    const termConfigs = {
-      "12": {
-        withFinal: {
-          monthlyRate: "3.850 €",
-          finalPayment: "6.296 €",
-          netLoanAmount: "46.392 €",
-          totalAmount: "52.516,00 €"
-        },
-        withoutFinal: {
-          monthlyRate: "3.990 €",
-          netLoanAmount: "45.892 €",
-          totalAmount: "59.478,00 €"
-        }
-      },
-      "24": {
-        withFinal: {
-          monthlyRate: "1.950 €",
-          finalPayment: "6.296 €",
-          netLoanAmount: "46.392 €",
-          totalAmount: "53.096,00 €"
-        },
-        withoutFinal: {
-          monthlyRate: "2.050 €",
-          netLoanAmount: "45.892 €",
-          totalAmount: "61.092,00 €"
-        }
-      },
-      "36": {
-        withFinal: {
-          monthlyRate: "1.320 €",
-          finalPayment: "6.296 €",
-          netLoanAmount: "46.392 €",
-          totalAmount: "53.816,00 €"
-        },
-        withoutFinal: {
-          monthlyRate: "1.390 €",
-          netLoanAmount: "45.892 €",
-          totalAmount: "54.932,00 €"
-        }
-      },
-      "48": {
-        withFinal: {
-          monthlyRate: "1.010 €",
-          finalPayment: "6.296 €",
-          netLoanAmount: "46.392 €",
-          totalAmount: "54.776,00 €"
-        },
-        withoutFinal: {
-          monthlyRate: "1.070 €",
-          netLoanAmount: "45.892 €",
-          totalAmount: "56.252,00 €"
-        }
-      },
-      "60": {
-        withFinal: {
-          monthlyRate: "220 €",
-          finalPayment: "6.296 €",
-          netLoanAmount: "46.392 €",
-          totalAmount: "56.278,89 €"
-        },
-        withoutFinal: {
-          monthlyRate: "985 €",
-          netLoanAmount: "45.892 €",
-          totalAmount: "59.120,00 €"
-        }
+    const vehiclePrice = 57490; // Vehicle price in euros
+    const downPaymentValue = parseFloat(downPayment.replace(/[^\d.-]/g, '')) || 0;
+    const annualInterestRate = 0.0583; // 5.83% annual interest rate
+    const effectiveAnnualRate = 0.0599; // 5.99% effective annual rate
+    const termMonths = parseInt(selectedTerm);
+
+    // Calculate net loan amount (vehicle price - down payment)
+    const netLoanAmount = vehiclePrice - downPaymentValue;
+
+    // Monthly interest rate
+    const monthlyInterestRate = annualInterestRate / 12;
+
+    let monthlyRate;
+    let finalPaymentAmount = 0;
+    let totalAmount;
+
+    if (finalPayment) {
+      // With final payment (balloon financing)
+      // Assume final payment is 10-15% of vehicle price
+      finalPaymentAmount = Math.round(vehiclePrice * 0.11);
+
+      // Loan amount minus final payment
+      const financedAmount = netLoanAmount - finalPaymentAmount;
+
+      // Calculate monthly payment for the financed amount
+      if (monthlyInterestRate > 0) {
+        monthlyRate = (financedAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, termMonths)) /
+                     (Math.pow(1 + monthlyInterestRate, termMonths) - 1);
+      } else {
+        monthlyRate = financedAmount / termMonths;
       }
+
+      totalAmount = downPaymentValue + (monthlyRate * termMonths) + finalPaymentAmount;
+    } else {
+      // Without final payment (traditional installment loan)
+      if (monthlyInterestRate > 0) {
+        monthlyRate = (netLoanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, termMonths)) /
+                     (Math.pow(1 + monthlyInterestRate, termMonths) - 1);
+      } else {
+        monthlyRate = netLoanAmount / termMonths;
+      }
+
+      totalAmount = downPaymentValue + (monthlyRate * termMonths);
+    }
+
+    // Format values
+    const formatCurrency = (value) => {
+      return new Intl.NumberFormat('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).format(value).replace('€', '€');
     };
 
-    const config = termConfigs[selectedTerm];
-    const details = finalPayment ? config.withFinal : config.withoutFinal;
+    const formatCurrencyDetailed = (value) => {
+      return new Intl.NumberFormat('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(value).replace('€', '€');
+    };
 
     const baseDetails = [
-      { label: "Fahrzeugpreis", value: "57.490 €" },
-      { label: "Anzahlung", value: "11.598 €" },
+      { label: "Fahrzeugpreis", value: formatCurrencyDetailed(vehiclePrice) },
+      { label: "Anzahlung", value: formatCurrencyDetailed(downPaymentValue) },
     ];
 
     if (finalPayment) {
-      baseDetails.push({ label: "Schlussrate", value: details.finalPayment });
+      baseDetails.push({ label: "Schlussrate", value: formatCurrencyDetailed(finalPaymentAmount) });
     }
 
     baseDetails.push(
-      { label: "Nettodarlehensbetrag", value: details.netLoanAmount },
+      { label: "Nettodarlehensbetrag", value: formatCurrencyDetailed(netLoanAmount) },
       { label: "Fester Sollzins p.a.", value: "5,83%" },
       { label: "Effekt. Jahreszins", value: "5,99%" },
-      { label: "Gesamtbetrag", value: details.totalAmount },
+      { label: "Gesamtbetrag", value: formatCurrencyDetailed(totalAmount) },
       { label: "Laufzeit (Monate) / Anzahl Raten", value: selectedTerm }
     );
 
-    return { details: baseDetails, monthlyRate: details.monthlyRate, finalPaymentAmount: details.finalPayment };
+    return {
+      details: baseDetails,
+      monthlyRate: formatCurrency(monthlyRate),
+      finalPaymentAmount: formatCurrencyDetailed(finalPaymentAmount)
+    };
   };
 
   const financingData = getFinancingDetails();
