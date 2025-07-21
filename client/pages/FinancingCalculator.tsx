@@ -229,7 +229,7 @@ export default function FinancingCalculator() {
                     Monatsrate
                   </span>
                   <span className="text-sm font-bold text-mobile-text-primary font-mobile-base">
-                    220 €
+                    {finalPayment ? "220 €" : "985 €"}
                   </span>
                 </div>
               </div>
