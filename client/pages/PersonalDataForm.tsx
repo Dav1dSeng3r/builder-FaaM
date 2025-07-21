@@ -181,31 +181,55 @@ export default function PersonalDataForm() {
             <div className="flex gap-18">
               <div className="flex-1 space-y-1">
                 <label className="text-sm font-medium text-mobile-text-primary font-mobile-base">
-                  Straße
+                  Straße *
                 </label>
-                <div className="border border-mobile-text-muted rounded-lg px-3.5 py-3">
+                <div className={`border rounded-lg px-3.5 py-3 ${
+                  errors.street ? "border-mobile-red" : "border-mobile-text-muted"
+                }`}>
                   <input
                     type="text"
                     placeholder="z.B. Musterstraße"
                     value={formData.street}
                     onChange={(e) => handleInputChange("street", e.target.value)}
-                    className="w-full text-sm font-mobile-base text-mobile-text-muted bg-transparent outline-none placeholder-mobile-text-muted"
+                    className={`w-full text-sm font-mobile-base bg-transparent outline-none placeholder-mobile-text-muted ${
+                      formData.street ? "text-mobile-text-primary" : "text-mobile-text-muted"
+                    }`}
                   />
                 </div>
+                {errors.street && (
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <AlertCircle className="w-4 h-4 text-mobile-red flex-shrink-0" />
+                    <span className="text-xs text-mobile-red font-mobile-base">
+                      {errors.street}
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="w-[101px] space-y-1">
                 <label className="text-sm font-medium text-mobile-text-primary font-mobile-base">
-                  Nr.
+                  Nr. *
                 </label>
-                <div className="border border-mobile-text-muted rounded-lg px-3.5 py-3">
+                <div className={`border rounded-lg px-3.5 py-3 ${
+                  errors.houseNumber ? "border-mobile-red" : "border-mobile-text-muted"
+                }`}>
                   <input
                     type="text"
                     placeholder="z.B. 12a"
                     value={formData.houseNumber}
                     onChange={(e) => handleInputChange("houseNumber", e.target.value)}
-                    className="w-full text-sm font-mobile-base text-mobile-text-muted bg-transparent outline-none placeholder-mobile-text-muted"
+                    className={`w-full text-sm font-mobile-base bg-transparent outline-none placeholder-mobile-text-muted ${
+                      formData.houseNumber ? "text-mobile-text-primary" : "text-mobile-text-muted"
+                    }`}
                   />
                 </div>
+                {errors.houseNumber && (
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <AlertCircle className="w-4 h-4 text-mobile-red flex-shrink-0" />
+                    <span className="text-xs text-mobile-red font-mobile-base">
+                      {errors.houseNumber}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 
