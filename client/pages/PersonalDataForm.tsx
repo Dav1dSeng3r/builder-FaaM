@@ -237,31 +237,55 @@ export default function PersonalDataForm() {
             <div className="flex gap-18">
               <div className="w-[101px] space-y-1">
                 <label className="text-sm font-medium text-mobile-text-primary font-mobile-base">
-                  PLZ
+                  PLZ *
                 </label>
-                <div className="border border-mobile-text-muted rounded-lg px-3.5 py-3">
+                <div className={`border rounded-lg px-3.5 py-3 ${
+                  errors.postalCode ? "border-mobile-red" : "border-mobile-text-muted"
+                }`}>
                   <input
                     type="text"
                     placeholder="z.B. 10245"
                     value={formData.postalCode}
                     onChange={(e) => handleInputChange("postalCode", e.target.value)}
-                    className="w-full text-sm font-mobile-base text-mobile-text-muted bg-transparent outline-none placeholder-mobile-text-muted"
+                    className={`w-full text-sm font-mobile-base bg-transparent outline-none placeholder-mobile-text-muted ${
+                      formData.postalCode ? "text-mobile-text-primary" : "text-mobile-text-muted"
+                    }`}
                   />
                 </div>
+                {errors.postalCode && (
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <AlertCircle className="w-4 h-4 text-mobile-red flex-shrink-0" />
+                    <span className="text-xs text-mobile-red font-mobile-base">
+                      {errors.postalCode}
+                    </span>
+                  </div>
+                )}
               </div>
               <div className="flex-1 space-y-1">
                 <label className="text-sm font-medium text-mobile-text-primary font-mobile-base">
-                  Ort
+                  Ort *
                 </label>
-                <div className="border border-mobile-text-muted rounded-lg px-3.5 py-3">
+                <div className={`border rounded-lg px-3.5 py-3 ${
+                  errors.city ? "border-mobile-red" : "border-mobile-text-muted"
+                }`}>
                   <input
                     type="text"
                     placeholder="z.B. Berlin"
                     value={formData.city}
                     onChange={(e) => handleInputChange("city", e.target.value)}
-                    className="w-full text-sm font-mobile-base text-mobile-text-muted bg-transparent outline-none placeholder-mobile-text-muted"
+                    className={`w-full text-sm font-mobile-base bg-transparent outline-none placeholder-mobile-text-muted ${
+                      formData.city ? "text-mobile-text-primary" : "text-mobile-text-muted"
+                    }`}
                   />
                 </div>
+                {errors.city && (
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <AlertCircle className="w-4 h-4 text-mobile-red flex-shrink-0" />
+                    <span className="text-xs text-mobile-red font-mobile-base">
+                      {errors.city}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 
