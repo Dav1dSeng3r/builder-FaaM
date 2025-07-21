@@ -49,8 +49,8 @@ export default function PersonalDataForm() {
     }
 
     const age = now.getFullYear() - date.getFullYear();
-    if (age < 18 || age > 100) {
-      return "Sie müssen zwischen 18 und 100 Jahre alt sein";
+    if (age < 18 || age > 75) {
+      return "Sie müssen zwischen 18 und 75 Jahre alt sein";
     }
 
     return "";
