@@ -16,7 +16,8 @@ export default function FinancingCalculator() {
     { value: "60", label: "60\nMonate" },
   ];
 
-  const financingDetails = [
+  // Dynamic financing details based on final payment toggle
+  const financingDetails = finalPayment ? [
     { label: "Fahrzeugpreis", value: "57.490 €" },
     { label: "Anzahlung", value: "11.598 €" },
     { label: "Schlussrate", value: "6.296 €" },
@@ -24,6 +25,14 @@ export default function FinancingCalculator() {
     { label: "Fester Sollzins p.a.", value: "5,83%" },
     { label: "Effekt. Jahreszins", value: "5,99%" },
     { label: "Gesamtbetrag", value: "56.278,89 €" },
+    { label: "Laufzeit (Monate) / Anzahl Raten", value: "60" },
+  ] : [
+    { label: "Fahrzeugpreis", value: "57.490 €" },
+    { label: "Anzahlung", value: "11.598 €" },
+    { label: "Nettodarlehensbetrag", value: "45.892 €" },
+    { label: "Fester Sollzins p.a.", value: "5,83%" },
+    { label: "Effekt. Jahreszins", value: "5,99%" },
+    { label: "Gesamtbetrag", value: "59.120,00 €" },
     { label: "Laufzeit (Monate) / Anzahl Raten", value: "60" },
   ];
 
