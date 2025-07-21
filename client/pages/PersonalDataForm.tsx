@@ -152,17 +152,29 @@ export default function PersonalDataForm() {
             {/* Birth Date */}
             <div className="space-y-1">
               <label className="text-sm font-medium text-mobile-text-primary font-mobile-base">
-                Geburtsdatum
+                Geburtsdatum *
               </label>
-              <div className="border border-mobile-text-muted rounded-lg px-3.5 py-3">
+              <div className={`border rounded-lg px-3.5 py-3 ${
+                errors.birthDate ? "border-mobile-red" : "border-mobile-text-muted"
+              }`}>
                 <input
                   type="text"
                   placeholder="z.B. 15.12.1999"
                   value={formData.birthDate}
                   onChange={(e) => handleInputChange("birthDate", e.target.value)}
-                  className="w-full text-sm font-mobile-base text-mobile-text-muted bg-transparent outline-none placeholder-mobile-text-muted"
+                  className={`w-full text-sm font-mobile-base bg-transparent outline-none placeholder-mobile-text-muted ${
+                    formData.birthDate ? "text-mobile-text-primary" : "text-mobile-text-muted"
+                  }`}
                 />
               </div>
+              {errors.birthDate && (
+                <div className="flex items-center gap-1.5 mt-1">
+                  <AlertCircle className="w-4 h-4 text-mobile-red flex-shrink-0" />
+                  <span className="text-xs text-mobile-red font-mobile-base">
+                    {errors.birthDate}
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Street and House Number Row */}
