@@ -21,6 +21,7 @@ export default function PersonalDataForm() {
   });
 
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
