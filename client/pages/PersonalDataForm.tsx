@@ -117,7 +117,7 @@ export default function PersonalDataForm() {
     if (validateForm()) {
       // Form is valid, proceed to contact form
       console.log("Form submitted successfully:", formData);
-      window.location.href = "/contact-form";
+      navigate("/contact-form");
     }
   };
 
