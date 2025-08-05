@@ -258,18 +258,51 @@ export default function ContactForm() {
 
           {/* Phone Fields */}
           <div className="flex gap-18">
-            <div className="w-28 space-y-1">
+            <div className="w-32 space-y-1 relative">
               <label className="text-sm font-medium text-mobile-text-primary font-mobile-base">
-                Ländervorwahl
+                Länderauswahl
               </label>
-              <div className="flex items-center border border-mobile-text-muted rounded-lg bg-mobile-text-light">
-                <div className="flex-1 px-3.5 py-3 text-sm text-mobile-text-primary font-mobile-base">
-                  +49
-                </div>
-                <div className="w-10 h-11 flex items-center justify-center border-l border-mobile-text-muted">
-                  <ChevronDown className="w-3 h-2 text-mobile-text-primary" />
-                </div>
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                  className="flex items-center w-full border border-mobile-text-muted rounded-lg bg-white hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex-1 px-3.5 py-3 text-sm text-mobile-text-primary font-mobile-base flex items-center gap-2">
+                    <span>{selectedCountry.flag}</span>
+                    <span>{selectedCountry.code}</span>
+                  </div>
+                  <div className="w-10 h-11 flex items-center justify-center border-l border-mobile-text-muted">
+                    <ChevronDown className={`w-3 h-2 text-mobile-text-primary transition-transform ${showCountryDropdown ? 'rotate-180' : ''}`} />
+                  </div>
+                </button>
+
+                {/* Dropdown Menu */}
+                {showCountryDropdown && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-mobile-text-muted rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
+                    {countries.map((country) => (
+                      <button
+                        key={country.code}
+                        type="button"
+                        onClick={() => handleCountrySelect(country.code)}
+                        className="w-full px-3.5 py-2.5 text-left hover:bg-gray-50 flex items-center gap-2 text-sm text-mobile-text-primary font-mobile-base border-b border-gray-100 last:border-b-0"
+                      >
+                        <span>{country.flag}</span>
+                        <span className="font-medium">{country.code}</span>
+                        <span className="text-mobile-text-secondary">{country.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
+
+              {/* Backdrop to close dropdown */}
+              {showCountryDropdown && (
+                <div
+                  className="fixed inset-0 z-0"
+                  onClick={() => setShowCountryDropdown(false)}
+                />
+              )}
             </div>
             <div className="flex-1 space-y-1">
               <label className="text-sm font-medium text-mobile-text-primary font-mobile-base">
