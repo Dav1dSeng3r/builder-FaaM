@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ChevronDown, Info, Mail, Lock } from "lucide-react";
 
 export default function ContactForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     salutation: "frau",
     firstName: "Vanessa",
