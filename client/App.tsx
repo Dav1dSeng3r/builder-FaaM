@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FinancingCalculator from "./pages/FinancingCalculator";
 import PersonalDataForm from "./pages/PersonalDataForm";
 import ContactForm from "./pages/ContactForm";
+import ContactSuccess from "./pages/ContactSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
