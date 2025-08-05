@@ -113,9 +113,9 @@ export default function PersonalDataForm() {
     setHasSubmitted(true);
 
     if (validateForm()) {
-      // Form is valid, proceed with submission
+      // Form is valid, proceed to contact form
       console.log("Form submitted successfully:", formData);
-      // Add your submission logic here
+      window.location.href = "/contact-form";
     }
   };
 
