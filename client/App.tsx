@@ -34,6 +34,12 @@ const App = () => (
 );
 
 const container = document.getElementById("root")!;
-if (!(container as any)._reactRootContainer) {
-  createRoot(container).render(<App />);
+
+// Check if root already exists to prevent double rendering in dev mode
+let root = (window as any).__reactRoot;
+if (!root) {
+  root = createRoot(container);
+  (window as any).__reactRoot = root;
 }
+
+root.render(<App />);
