@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ChevronDown, Info, AlertCircle } from "lucide-react";
 import PrivacyInfoModal from "../components/PrivacyInfoModal";
 
