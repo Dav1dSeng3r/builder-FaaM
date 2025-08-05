@@ -33,6 +33,11 @@ export default function ContactForm() {
     }
   };
 
+  const handleSendEmail = () => {
+    // Navigate to success page
+    navigate("/contact-success");
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
