@@ -279,13 +279,13 @@ export default function ContactForm() {
 
                 {/* Dropdown Menu */}
                 {showCountryDropdown && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-mobile-text-muted rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
+                  <div className="absolute top-full left-0 mt-1 bg-white border border-mobile-text-muted rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto w-72 min-w-max">
                     {countries.map((country) => (
                       <button
                         key={country.code}
                         type="button"
                         onClick={() => handleCountrySelect(country.code)}
-                        className="w-full px-3.5 py-2.5 text-left hover:bg-gray-50 flex items-center gap-2 text-sm text-mobile-text-primary font-mobile-base border-b border-gray-100 last:border-b-0"
+                        className="w-full px-3.5 py-2.5 text-left hover:bg-gray-50 flex items-center gap-2 text-sm text-mobile-text-primary font-mobile-base border-b border-gray-100 last:border-b-0 whitespace-nowrap"
                       >
                         <span>{country.flag}</span>
                         <span className="font-medium">{country.code}</span>
