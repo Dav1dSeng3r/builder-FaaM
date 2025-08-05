@@ -4,6 +4,22 @@ import { ChevronDown, Info, Mail, Lock } from "lucide-react";
 
 export default function ContactForm() {
   const navigate = useNavigate();
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+
+  // Top 10 European countries with their codes
+  const countries = [
+    { code: "+49", name: "Deutschland", flag: "🇩🇪" },
+    { code: "+33", name: "Frankreich", flag: "🇫🇷" },
+    { code: "+39", name: "Italien", flag: "🇮🇹" },
+    { code: "+44", name: "Vereinigtes Königreich", flag: "🇬🇧" },
+    { code: "+34", name: "Spanien", flag: "🇪🇸" },
+    { code: "+31", name: "Niederlande", flag: "🇳🇱" },
+    { code: "+41", name: "Schweiz", flag: "🇨🇭" },
+    { code: "+43", name: "Österreich", flag: "🇦🇹" },
+    { code: "+32", name: "Belgien", flag: "🇧🇪" },
+    { code: "+48", name: "Polen", flag: "🇵🇱" },
+  ];
+
   const [formData, setFormData] = useState({
     salutation: "frau",
     firstName: "Vanessa",
