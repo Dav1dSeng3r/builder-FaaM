@@ -115,29 +115,33 @@ export default function ContactForm() {
             </label>
             <div className="flex gap-18">
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 flex items-center justify-center">
-                  <div className={`w-5 h-5 rounded-full border ${formData.salutation === "herr" ? "border-mobile-text-muted bg-white" : "border-mobile-text-muted bg-white"}`}>
-                    {formData.salutation === "herr" && <div className="w-2 h-2 bg-white rounded-full mx-auto"></div>}
-                  </div>
-                </div>
-                <button 
+                <button
                   onClick={() => handleInputChange("salutation", "herr")}
-                  className="text-sm text-mobile-text-primary font-mobile-base"
+                  className="flex items-center gap-2 cursor-pointer"
                 >
-                  Herr
+                  <div className="w-6 h-6 flex items-center justify-center">
+                    <div className={`w-5 h-5 rounded-full border ${formData.salutation === "herr" ? "border-2 border-mobile-purple bg-mobile-purple" : "border border-mobile-text-muted bg-white"}`}>
+                      {formData.salutation === "herr" && <div className="w-2 h-2 bg-white rounded-full mx-auto"></div>}
+                    </div>
+                  </div>
+                  <span className="text-sm text-mobile-text-primary font-mobile-base">
+                    Herr
+                  </span>
                 </button>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 flex items-center justify-center">
-                  <div className={`w-5 h-5 rounded-full border-2 ${formData.salutation === "frau" ? "border-mobile-purple bg-mobile-purple" : "border-mobile-text-muted bg-white"}`}>
-                    {formData.salutation === "frau" && <div className="w-2 h-2 bg-white rounded-full mx-auto"></div>}
-                  </div>
-                </div>
-                <button 
+                <button
                   onClick={() => handleInputChange("salutation", "frau")}
-                  className="text-sm text-mobile-text-primary font-mobile-base"
+                  className="flex items-center gap-2 cursor-pointer"
                 >
-                  Frau
+                  <div className="w-6 h-6 flex items-center justify-center">
+                    <div className={`w-5 h-5 rounded-full border ${formData.salutation === "frau" ? "border-2 border-mobile-purple bg-mobile-purple" : "border border-mobile-text-muted bg-white"}`}>
+                      {formData.salutation === "frau" && <div className="w-2 h-2 bg-white rounded-full mx-auto"></div>}
+                    </div>
+                  </div>
+                  <span className="text-sm text-mobile-text-primary font-mobile-base">
+                    Frau
+                  </span>
                 </button>
               </div>
             </div>
