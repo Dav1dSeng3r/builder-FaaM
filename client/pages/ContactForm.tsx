@@ -149,12 +149,13 @@ export default function ContactForm() {
               <label className="text-sm font-medium text-mobile-text-primary font-mobile-base">
                 Vorname
               </label>
-              <div className="border border-mobile-text-muted rounded-lg px-3.5 py-3">
+              <div className="border border-mobile-text-muted rounded-lg px-3.5 py-3 bg-white focus-within:border-mobile-secondary-purple">
                 <input
                   type="text"
                   value={formData.firstName}
                   onChange={(e) => handleInputChange("firstName", e.target.value)}
-                  className="w-full text-sm font-mobile-base text-mobile-text-primary bg-transparent outline-none"
+                  className="w-full text-sm font-mobile-base text-mobile-text-primary bg-transparent outline-none focus:outline-none"
+                  placeholder="Vorname eingeben"
                 />
               </div>
             </div>
@@ -162,12 +163,13 @@ export default function ContactForm() {
               <label className="text-sm font-medium text-mobile-text-primary font-mobile-base">
                 Nachname
               </label>
-              <div className="border border-mobile-text-muted rounded-lg px-3.5 py-3">
+              <div className="border border-mobile-text-muted rounded-lg px-3.5 py-3 bg-white focus-within:border-mobile-secondary-purple">
                 <input
                   type="text"
                   value={formData.lastName}
                   onChange={(e) => handleInputChange("lastName", e.target.value)}
-                  className="w-full text-sm font-mobile-base text-mobile-text-primary bg-transparent outline-none"
+                  className="w-full text-sm font-mobile-base text-mobile-text-primary bg-transparent outline-none focus:outline-none"
+                  placeholder="Nachname eingeben"
                 />
               </div>
             </div>
