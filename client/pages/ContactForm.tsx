@@ -55,6 +55,13 @@ export default function ContactForm() {
     navigate("/contact-success");
   };
 
+  const handleCountrySelect = (countryCode: string) => {
+    handleInputChange("countryCode", countryCode);
+    setShowCountryDropdown(false);
+  };
+
+  const selectedCountry = countries.find(country => country.code === formData.countryCode) || countries[0];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
