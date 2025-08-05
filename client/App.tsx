@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FinancingCalculator from "./pages/FinancingCalculator";
 import PersonalDataForm from "./pages/PersonalDataForm";
+import ContactForm from "./pages/ContactForm";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
