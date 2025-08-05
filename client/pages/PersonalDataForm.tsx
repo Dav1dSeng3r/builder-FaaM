@@ -4,6 +4,8 @@ import { ChevronDown, Info, AlertCircle } from "lucide-react";
 import PrivacyInfoModal from "../components/PrivacyInfoModal";
 
 export default function PersonalDataForm() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     birthDate: "",
     street: "",
