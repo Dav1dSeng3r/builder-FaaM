@@ -361,7 +361,10 @@ export default function ContactForm() {
 
           {/* Send Button */}
           <div className="space-y-1.5 pt-2">
-            <button className="w-full flex items-center justify-center gap-2 bg-mobile-red text-white py-3 px-4 rounded-lg font-bold text-sm font-mobile-base hover:bg-red-700 transition-colors">
+            <button
+              onClick={handleSendEmail}
+              className="w-full flex items-center justify-center gap-2 bg-mobile-red text-white py-3 px-4 rounded-lg font-bold text-sm font-mobile-base hover:bg-red-700 transition-colors"
+            >
               <Mail className="w-4 h-4" />
               E-Mail senden
             </button>
